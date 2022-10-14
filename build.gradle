@@ -3,11 +3,22 @@ plugins {
     id 'maven-publish'
 }
 
-group 'com.smnet'
-version '0.0.1'
+group 'com.smnet.security'
+version '1.0.0-20221014'
 
 repositories {
+
     mavenCentral()
+
+    maven {
+        url "http://itdev:8081/nexus/content/repositories/smnet"
+        allowInsecureProtocol(true)
+    }
+
+    maven {
+        url "http://192.168.178.119:8081/nexus/content/repositories/releases"
+        allowInsecureProtocol(true)
+    }
 }
 
 dependencies {
@@ -40,6 +51,29 @@ publishing {
                         email = 'admin@sm-netzwerk.com'
                     }
                 }
+            }
+        }
+    }
+
+    repositories {
+
+        maven {
+            name "_MEHRER_ITDEV_SMNET_"
+            url "http://itdev:8081/nexus/content/repositories/smnet"
+            allowInsecureProtocol(true)
+            credentials {
+                username "admin"
+                password "admin123"
+            }
+        }
+
+        maven {
+            name "_SMNET_ARCH_NEXUS_"
+            url "http://192.168.178.119:8081/nexus/content/repositories/releases"
+            allowInsecureProtocol(true)
+            credentials {
+                username "admin"
+                password "admin123"
             }
         }
     }

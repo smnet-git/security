@@ -51,4 +51,32 @@ public class TestAES256 {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void createOwnKey() {
+
+        try {
+
+            AES256Key key = new AES256Key("Questa è la mia chiave");
+
+            System.out.println("getIvBase64 : " + key.getIvBase64());
+            System.out.println("getSaltBase64 : " + key.getSaltBase64());
+
+            // Prendi nota dell'IvBase64 e del SaltBase64
+
+            // Poi puoi creare direttamente la tua key
+
+            AES256Key ownKey = new AES256Key("Questa è la mia chiave", "sSR8UkDHEAk31QTYeiThhw", "pEiFy9oMa6ALj31ku6UBdA");
+
+            System.out.println("getIvBase64 : " + key.getIvBase64());
+            System.out.println("getSaltBase64 : " + key.getSaltBase64());
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
